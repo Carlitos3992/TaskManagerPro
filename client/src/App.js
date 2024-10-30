@@ -1,21 +1,27 @@
-import React, { useState } from 'react';
-
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import NavBar from './components/NavBar';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
 import Report from './pages/Report';
-import NavBar from './components/NavBar';
 
 function App() {
-  const [tasks, setTasks] = useState([]); // assuming tasks are managed here
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem('token');
+    setIsLoggedIn(!!token); // Set isLoggedIn to true if token exists
+  }, []);
 
   return (
     <Router>
-      <NavBar />
+      <NavBar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
+
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard tasks={tasks} />} />
-        <Route path="/report" element={<Report tasks={tasks} />} />
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/login" element={<Login setIsLoggedIn={setIsLoggedIn} />} />
+        <Route path="/dashboard" element={isLoggedIn ? <Dashboard /> : <Navigate to="/login" />} />
+        <Route path="/report" element={isLoggedIn ? <Report /> : <Navigate to="/login" />} />
       </Routes>
     </Router>
   );

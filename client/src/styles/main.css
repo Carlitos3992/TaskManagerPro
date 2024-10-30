@@ -12,7 +12,7 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 20px;
+    padding: 20px 30px;
     background-color: #2c2c2c;
   }
   
@@ -78,7 +78,7 @@ nav {
   
   .login-form input {
     width: 100%;
-    padding: 10px;
+    padding: 10px 0;
     margin: 10px 0;
     font-size: 16px;
     border: 1px solid #ccc;
@@ -104,12 +104,16 @@ nav {
  /* Dashboard Container */
 .dashboard-container {
     padding: 20px;
+    text-align: center;
   }
   
   .dashboard-container h2 {
     font-size: 24px;
     margin-bottom: 20px;
     color: #333;
+    text-align: center;
+    margin-left: 10px;
+
   }
   
   /* Task Form Styles */
@@ -241,6 +245,7 @@ nav {
 .dashboard-container h2 {
   font-size: 24px;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 /* Task Form Styles */
@@ -336,6 +341,7 @@ nav {
   .report-container h2 {
     font-size: 24px;
     margin-bottom: 20px;
+    text-align: center;
   }
   
   .report-summary {
@@ -348,5 +354,6 @@ nav {
   .report-summary p {
     font-size: 18px;
     margin: 10px 0;
+    margin-left: 20px;
   }
   
