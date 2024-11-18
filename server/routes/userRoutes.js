@@ -10,7 +10,7 @@ router.post('/register', async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
-    // Check if user already exists   
+    // Check if user already exists
     const existingUser = await User.findOne({ email });
     if (existingUser) return res.status(400).json({ message: 'User already exists' });
 
@@ -26,13 +26,21 @@ router.post('/register', async (req, res) => {
     });
 
     await newUser.save();
-    res.status(201).json({ message: 'User registered successfully' });
+
+    // Generate JWT
+    const token = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+    // Return token and success message
+    res.status(201).json({ token, message: 'User registered successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
   }
 });
 
 // Login Route
+
+
+
 router.post('/login', async (req, res) => {
   try {
     const { email, password } = req.body;
@@ -47,6 +55,7 @@ router.post('/login', async (req, res) => {
 
     // Generate JWT
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
     res.json({ token, message: 'Logged in successfully' });
   } catch (error) {
     res.status(500).json({ message: 'Server error' });
