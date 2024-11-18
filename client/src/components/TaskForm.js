@@ -7,16 +7,24 @@ function TaskForm({ onAddTask }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!taskName || !description) return;
 
+    // Validation
+    if (!taskName || !description) {
+      alert('Both Task Name and Description are required!');
+      return;
+    }
+
+    // Prepare task data
     const newTask = {
-      id: Date.now(),
-      name: taskName,
+      title: taskName, // Match the backend field
       description,
       status,
     };
 
+    // Call the parent function to handle API communication
     onAddTask(newTask);
+
+    // Reset the form
     setTaskName('');
     setDescription('');
     setStatus('Not Started');
