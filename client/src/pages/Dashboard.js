@@ -48,7 +48,7 @@ function Dashboard() {
 
   const updateTask = async (taskId, updatedFields) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+      const response = await fetch(`http://localhost:5000/api/tasks/update/${taskId}`, {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -69,9 +69,17 @@ function Dashboard() {
     }
   };
 
+  const markTaskAsInProgress = (taskId) => {
+    updateTask(taskId, { status: 'In Progress' });
+  };
+
+  const markTaskAsDone = (taskId) => {
+    updateTask(taskId, { status: 'Done' });
+  };
+
   const deleteTask = async (taskId) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/tasks/${taskId}`, {
+      const response = await fetch(`http://localhost:5000/api/tasks/delete/${taskId}`, {
         method: 'DELETE',
         headers: {
           Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -92,7 +100,13 @@ function Dashboard() {
     <div className="dashboard-container">
       <h2>Dashboard</h2>
       <TaskForm onAddTask={addTask} />
-      <TaskList tasks={tasks} onDeleteTask={deleteTask} onUpdateTask={updateTask} />
+      <TaskList
+        tasks={tasks}
+        onDeleteTask={deleteTask}
+        onUpdateTask={updateTask}
+        onMarkAsInProgress={markTaskAsInProgress}
+        onMarkAsDone={markTaskAsDone}
+      />
     </div>
   );
 }

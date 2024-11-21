@@ -1,10 +1,10 @@
 import React from 'react';
 
-function TaskList({ tasks, onDeleteTask, onUpdateTask }) {
+function TaskList({ tasks, onDeleteTask, onMarkAsInProgress, onMarkAsDone }) {
   return (
-    <div className="task-list">
+    <ul className="task-list">
       {tasks.map((task) => (
-        <div key={task._id} className="task-card">
+        <li key={task._id} className="task-card">
           <div className="task-content">
             <h3>{task.title}</h3>
             <p><strong>Description:</strong> {task.description}</p>
@@ -12,21 +12,26 @@ function TaskList({ tasks, onDeleteTask, onUpdateTask }) {
           </div>
           <div className="task-actions">
             <button
-              className="update-button"
-              onClick={() => onUpdateTask(task._id, { status: 'Done' })}
+              className="btn-in-progress"
+              onClick={() => onMarkAsInProgress(task._id)}
+              disabled={task.status === 'In Progress'} // Prevent duplicate state
+            >
+              Mark as In Progress
+            </button>
+            <button
+              className="btn-done"
+              onClick={() => onMarkAsDone(task._id)}
+              disabled={task.status === 'Done'} // Prevent duplicate state
             >
               Mark as Done
             </button>
-            <button
-              className="delete-button"
-              onClick={() => onDeleteTask(task._id)}
-            >
+            <button className="btn-delete" onClick={() => onDeleteTask(task._id)}>
               Delete
             </button>
           </div>
-        </div>
+        </li>
       ))}
-    </div>
+    </ul>
   );
 }
 
