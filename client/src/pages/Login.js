@@ -10,8 +10,8 @@ function Login({ setIsLoggedIn }) {
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    setLoading(true); // Disable button and show loading state
-    setError(''); // Clear any previous errors
+    setLoading(true);
+    setError(''); 
     
     try {
       const response = await fetch('http://localhost:5000/api/users/login', {
@@ -26,8 +26,8 @@ function Login({ setIsLoggedIn }) {
       if (response.ok) {
         // Store token in localStorage
         localStorage.setItem('token', data.token);
-        setIsLoggedIn(true); // Update the parent state
-        navigate('/dashboard'); // Redirect to the dashboard
+        setIsLoggedIn(true); 
+        navigate('/dashboard'); 
       } else {
         // Handle API error response
         setError(data.message || 'Invalid credentials');

@@ -8,13 +8,13 @@ function TaskForm({ onAddTask }) {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    // Validation
+    // Validando
     if (!taskName || !description) {
-      alert('Both Task Name and Description are required!');
+      alert('You need to put both fields to make the task! ');
       return;
     }
 
-    // Prepare task data
+    // Preparando todo para los task
     const newTask = {
       title: taskName, // Match the backend field
       description,

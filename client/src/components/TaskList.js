@@ -14,14 +14,14 @@ function TaskList({ tasks, onDeleteTask, onMarkAsInProgress, onMarkAsDone }) {
             <button
               className="btn-in-progress"
               onClick={() => onMarkAsInProgress(task._id)}
-              disabled={task.status === 'In Progress'} // Prevent duplicate state
+              disabled={task.status === 'In Progress'} //Aqui voy a prevenir los duplicados
             >
               Mark as In Progress
             </button>
             <button
               className="btn-done"
               onClick={() => onMarkAsDone(task._id)}
-              disabled={task.status === 'Done'} // Prevent duplicate state
+              disabled={task.status === 'Done'} //Aqui voy a prevenir los duplicados
             >
               Mark as Done
             </button>

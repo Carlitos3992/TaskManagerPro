@@ -4,26 +4,26 @@ function Report() {
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    // Fetch tasks from the backend
+
     const fetchTasks = async () => {
       try {
         const response = await fetch('http://localhost:5000/api/tasks/all', {
           headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${localStorage.getItem('token')}`, // If authentication is needed
+            Authorization: `Bearer ${localStorage.getItem('token')}`, 
           },
         });
         const data = await response.json();
-        setTasks(data); // Set tasks in state
+        setTasks(data); 
       } catch (error) {
         console.error('Error fetching tasks:', error);
       }
     };
 
     fetchTasks();
-  }, []); // Empty dependency array ensures this runs once when the component mounts
+  }, []); 
 
-  // Calculate statistics
+
   const totalTasks = tasks.length;
   const tasksByStatus = tasks.reduce(
     (acc, task) => {

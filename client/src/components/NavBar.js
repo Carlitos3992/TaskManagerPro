@@ -5,7 +5,7 @@ function NavBar() {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const navigate = useNavigate();
 
-  // Check if token exists in local storage
+  // Chequear si el tokin existe
   useEffect(() => {
     const token = localStorage.getItem('token');
     setIsLoggedIn(!!token); // Set isLoggedIn to true if token exists
@@ -16,7 +16,7 @@ function NavBar() {
     setIsLoggedIn(!!token); // Set isLoggedIn to true if token exists
   }, [localStorage.getItem('token')]);
 
-  // Handle Logout
+  // Aqui ando manejando el LogOut
   const handleLogout = () => {
     localStorage.removeItem('token');
     setIsLoggedIn(false);

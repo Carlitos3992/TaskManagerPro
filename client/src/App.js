@@ -6,14 +6,15 @@ import Dashboard from './pages/Dashboard';
 import Report from './pages/Report';
 
 function App() {
-  // Declare isLoggedIn and setIsLoggedIn
+
+
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [tasks, setTasks] = useState([]);
 
   useEffect(() => {
-    // Check if a token exists in local storage to set logged-in state
+
     const token = localStorage.getItem('token');
-    setIsLoggedIn(!!token); // Sets to true if token exists
+    setIsLoggedIn(!!token);
   }, []);
 
 
