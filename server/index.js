@@ -1,4 +1,4 @@
-// Import dependencies
+
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
@@ -8,7 +8,7 @@ const connectDB = require('./config/db');
 // Load environment variables
 dotenv.config();
 
-// Initialize Express
+ 
 const app = express();
 
 // Middleware

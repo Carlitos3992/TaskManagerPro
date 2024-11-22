@@ -9,7 +9,7 @@ const TaskSchema = new mongoose.Schema(
       enum: ['Not Started', 'In Progress', 'Done'],
       required: true,
     },
-    assignedTo: { type: String }, // Simple string for assigned user
+    assignedTo: { type: String },
   },
   { timestamps: true }
 );
